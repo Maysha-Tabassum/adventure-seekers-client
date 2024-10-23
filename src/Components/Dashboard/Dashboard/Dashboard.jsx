@@ -42,7 +42,7 @@ const Dashboard = () => {
             style={{ cursor: "pointer" }}
             onClick={() => setIsToggle(false)}
           >
-            <img height={25} width={25} src={rightArrow} alt="icon" />
+            <img height={25}  src={rightArrow} alt="icon" />
           </div>
         ) : (
           <div
@@ -133,6 +133,15 @@ const Dashboard = () => {
                     className="text-decoration-none text-white ms-lg-4"
                   >
                     My Booking
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={`/dashboard/logout`}
+                    className="text-decoration-none text-white ms-lg-4"
+                    onClick={handleLogOutButton}
+                  >
+                    LogOut
                   </Link>
                 </li>
               </ul>

@@ -20,6 +20,7 @@ import Register from "./Components/Login/Register/Register";
 import NotFound from "./Components/NoFound/NotFound";
 import Footer from "./Components/Shared/Footer/Footer";
 import Booking from "./Components/Home/Booking/Booking";
+import LogOut from "./Components/LogOut/LogOut";
 
 function App() {
   const [date, setDate] = useState("");
@@ -44,9 +45,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<LogOut />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/register" element={<Register />} />
-            {/* <Route
+            <Route
               path="/selectBus"
               element={
                 <SelectBus
@@ -55,7 +57,7 @@ function App() {
                   date={date}
                 />
               }
-            /> */}
+            />
             <Route
               path="/select-seat"
               element={

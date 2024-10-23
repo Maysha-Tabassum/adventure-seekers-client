@@ -206,6 +206,7 @@ const Booking = () => {
                                 <BusSeatLayout
                                     bus={findSelectBus}
                                     setConfirmDetails={setConfirmDetails}
+                                    
                                 />
                             </div>
                         </div>

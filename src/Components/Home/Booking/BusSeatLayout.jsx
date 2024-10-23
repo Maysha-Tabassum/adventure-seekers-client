@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import bg from "../../../assets/images/bg.jpg";
 import Header from "../../Shared/Header/Header/Header";
 import "./BusSeatLayout.css"; // Import your CSS file for styling
+
 const cover = {
     background: `url(${bg})`,
     backgroundSize: "cover",
     minHeight: "100vh",
 };
+
 const BusSeatLayout = ({ bus, setConfirmDetails }) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [luggageNumber, setLuggageNumber] = useState([]);
+    const [luggageNumber, setLuggageNumber] = useState(0); // Initialize as number
     const [snakes, setSnakes] = useState("");
     const [passengerName, setPassengerName] = useState("");
     const totalSeats = bus?.totalSeats;
@@ -18,7 +20,6 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
     const seatsPerRow = 4;
     const numRows = Math.ceil(totalSeats / seatsPerRow);
     const navigate = useNavigate();
-    // console.log(luggageNumber);
 
     const renderSeats = () => {
         const seats = [];
@@ -40,8 +41,7 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
                 rowSeats.push(
                     <div
                         key={seatLabel}
-                        className={`seat ${isBooked ? "booked" : ""} ${isSelected ? "selected" : ""
-                            }`}
+                        className={`seat ${isBooked ? "booked" : ""} ${isSelected ? "selected" : ""}`}
                         onClick={() => !isBooked && handleSeatClick(seatLabel)}
                     >
                         {seatLabel}
@@ -63,9 +63,7 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
 
     const handleSeatClick = (seatLabel) => {
         if (selectedSeats.includes(seatLabel)) {
-            setSelectedSeats(
-                selectedSeats.filter((selectedSeat) => selectedSeat !== seatLabel)
-            );
+            setSelectedSeats(selectedSeats.filter((selectedSeat) => selectedSeat !== seatLabel));
         } else {
             setSelectedSeats([...selectedSeats, seatLabel]);
         }
@@ -76,11 +74,11 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
         let luggagePrice = 0;
         let snakesPrice = 0;
 
-        if (selectedSeats?.length * 2 < luggageNumber) {
-            luggagePrice = (luggageNumber - selectedSeats?.length * 2) * 50;
+        if (selectedSeats.length * 2 < luggageNumber) {
+            luggagePrice = (luggageNumber - selectedSeats.length * 2) * 50;
         }
         if (snakes === "Yes") {
-            snakesPrice = selectedSeats?.length * 70;
+            snakesPrice = selectedSeats.length * 70;
         }
 
         let confirmDetails = {
@@ -93,8 +91,7 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
             to: bus?.destination,
             busId: bus?._id,
             price: bus?.pricePerSeat,
-            totalPrice:
-                bus?.pricePerSeat * selectedSeats?.length + luggagePrice + snakesPrice,
+            totalPrice: bus?.pricePerSeat * selectedSeats.length + luggagePrice + snakesPrice,
         };
 
         setConfirmDetails(confirmDetails);
@@ -111,13 +108,13 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
                             <div className="bus-layout">{renderSeats()}</div>
                         </div>
                         <div className="col-sm-8 text-light">
-                            {selectedSeats?.length && (
+                            {selectedSeats.length > 0 && ( // Update condition here
                                 <div className="border p-3 rounded">
                                     <form className="form">
                                         <div className="text-center">
                                             <h4 className="fw-bold text-light">Booked Seats</h4>
                                             <div className="fw-bold d-flex justify-content-center">
-                                                {selectedSeats?.map((seat, index) => (
+                                                {selectedSeats.map((seat, index) => (
                                                     <span className="seat bg-primary" key={index}>
                                                         {seat}
                                                     </span>
@@ -139,10 +136,10 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
                                             <input
                                                 className="form-control seatInp"
                                                 type="number"
-                                                name="passenger-name"
+                                                name="luggage-number" // Use a different name
                                                 placeholder="Luggage No"
                                                 autoComplete="off"
-                                                onChange={(e) => setLuggageNumber(e.target.value)}
+                                                onChange={(e) => setLuggageNumber(parseInt(e.target.value) || 0)} // Parse as integer
                                             />
                                             <p className="my-3">
                                                 Maximum limit is 1 person with 2 luggage. If you have
@@ -156,8 +153,9 @@ const BusSeatLayout = ({ bus, setConfirmDetails }) => {
                                             <select
                                                 className="form-control seatInp"
                                                 onChange={(e) => setSnakes(e.target.value)}
+                                                defaultValue="" // Default value
                                             >
-                                                <option>Option</option>
+                                                <option value="" disabled>Select Snacks</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
