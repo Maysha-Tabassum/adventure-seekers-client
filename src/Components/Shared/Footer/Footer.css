@@ -1,0 +1,55 @@
+.footer-container {
+    background-color: #86a3c1;
+    padding-top: 50px;
+  }
+  
+  .text-color {
+    color: #190b49;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: #e4f5fa;
+    color: darkcyan;
+  }
+  
+  .ftr-border {
+    border-bottom: 1px dotted #999999;
+  }
+  
+  .link-text {
+    transition: 0.2s;
+  }
+  
+  .link-text:hover {
+    color: darkcyan;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  .footer-bottom {
+    background-color: #000;
+    margin-top: 30px;
+  }
+  
+  .footer-icon {
+    color: darkcyan;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 30px;
+    border: 1px solid #e4f5fa;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+  
+  .footer-icon:hover {
+    color: #e4f5fa;
+    border: 1px solid darkcyan;
+  }
+  
+  /* mobile responsive media query  */
+  @media only screen and (max-width: 688px) {
+    #subscribe-email {
+      width: 15rem;
+    }
+  }

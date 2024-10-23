@@ -1,0 +1,53 @@
+.mytext1 {
+    color: #000000;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.425), 0 0 4px rgba(255, 255, 255, 0.425), 0 0 8px rgba(255, 255, 255, 0.425), 0 0 32px rgba(0, 255, 255, 0.425), 0 0 64px rgba(0, 255, 255, 0.425), 0 0 90px rgba(0, 255, 255, 0.425);
+    font-family: 'Piedra', cursive;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    position: relative;
+    animation: text 3s infinite;
+}
+
+@keyframes text {
+    0% {
+        color: rgb(0, 0, 0);
+        margin-bottom: -40px;
+    }
+
+    30% {
+        letter-spacing: 25px;
+        margin-bottom: -40px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: -40px;
+        color: rgb(0, 0, 0)
+    }
+}
+
+.getStarted {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 100px;
+    margin-bottom: 80px;
+    border: 2px solid #dddddd;
+    border-radius: 28px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    padding: 5px 35px;
+}
+
+.getStarted:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgb(226, 116, 43);
+    transition: .4s;
+}
